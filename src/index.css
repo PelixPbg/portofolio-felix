@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-main: #ffffff;
+  --bg-dark: #ffffff;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --neon-cyan: #0891b2;
+  --neon-blue: #2563eb;
+  --bg-glass: rgba(0, 0, 0, 0.03);
+  --border-glass: rgba(0, 0, 0, 0.10);
+  --glow-shadow: 0 0 15px rgba(8, 145, 178, 0.2);
+  --shadow-neon: 0 0 10px rgba(8, 145, 178, 0.2);
+  --shadow-btn: 0 4px 15px rgba(8, 145, 178, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Reusable class untuk panel transparan */
+.glass-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--neon-cyan), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar Level Dewa */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-blue));
+  border-radius: 10px;
+}
+
+/* Abstract Background Glow */
+.bg-glow-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blur-circle-1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.06;
+  top: -10%;
+  left: -10%;
+}
+
+.blur-circle-2 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: var(--neon-blue);
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.06;
+  bottom: 10%;
+  right: -10%;
+}
