@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
-import { Code, Layout, Database, Terminal, Cpu, Layers } from "lucide-react";
-import "./Skills.css"; // <-- Pastikan titik dan garis miringnya benar karena berada di folder yang sama (pages/)
+import { Globe, Cpu } from "lucide-react";
+import "./Skills.css";
 
 const skillData = [
-  { name: "React JS", level: 90, icon: <Cpu />, desc: "State management, Hooks, Context API" },
-  { name: "CSS Modules / SCSS", level: 95, icon: <Layout />, desc: "Modern layouts, Flexbox, Grid, Animations" },
-  { name: "Vite / Build Tools", level: 80, icon: <Layers />, desc: "Bundling, Environment Config, Optimization" },
-  { name: "HTML5 Semantics", level: 95, icon: <Code />, desc: "SEO Friendly, Accessibility (a11y), Clean Structure" },
-  { name: "RESTful API / JSON", level: 85, icon: <Database />, desc: "Data fetching, Axios, Integration" },
+  { name: "HTML5 Semantic", level: 95, icon: <Globe />, desc: "SEO Friendly, Accessibility (a11y), Clean Structure" },
+  { name: "CSS", level: 90, icon: <Globe />, desc: "Modern layouts, Flexbox, Grid, Animations" },
+  { name: "JavaScript", level: 85, icon: <Cpu />, desc: "Asynchronous, DOM, Functional Programming" },
+  { name: "React JS", level: 80, icon: <Cpu />, desc: "State management, Hooks, Context API" },
+  { name: "MySQL", level: 75, icon: <Cpu />, desc: "Database design, Query optimization, Relations" },
+  { name: "Blender 3D", level: 90, icon: <Cpu />, desc: "Modeling, Texturing, Lighting, Rendering" },
 ];
 
 const Skills = () => {
-  // Animasi container untuk delay berurutan (stagger) pada card
   const containerVariants = {
     hidden: {},
     visible: {

@@ -86,20 +86,10 @@ function Home() {
         </div>
       </section>
 
-      <section id="about" className="section">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="about-card">
-          <div className="section-tag"><User size={16} /> About Me</div>
-          <h2 className="section-title">Mendesain Pengalaman Digital</h2>
-          <p className="section-desc">
-            Saya adalah seseorang yang memiliki minat besar di bidang pengembangan website modern dan desain visual 3D. Saya senang membuat website dengan tampilan yang responsif, interaktif, dan nyaman digunakan, serta terus belajar mengembangkan kemampuan dalam membangun antarmuka yang lebih menarik dan profesional. Selain itu, saya juga mendalami pembuatan karya 3D menggunakan Blender, mulai dari modeling, texturing, lighting, hingga rendering, untuk menghasilkan visual yang detail, kreatif, dan estetik. Saya menyukai proses belajar hal baru, eksplorasi desain, dan pengembangan skill teknologi agar dapat terus berkembang menjadi kreator digital yang inovatif.
-          </p>
-        </motion.div>
-      </section>
-
       <section id="skills" className="section container-grid">
         <div className="section-header-center">
-          <h2>Core Tech Stack</h2>
-          <p>Kumpulan framework dan teknologi andalan saya.</p>
+          <h2>Skills & Technologies</h2>
+          <p>Teknologi yang saya gunakan untuk membangun website dan karya 3D.</p>
         </div>
         <div className="skills-grid">
           {skills.map((skill, index) => (
@@ -117,7 +107,7 @@ function Home() {
       </section>
 
       <footer className="footer">
-        &copy; {new Date().getFullYear()} DevPortfolio.
+  © {new Date().getFullYear()} Felix Purbawiatna • Web Developer & 3D Designer
       </footer>
 
       <BackToTop />
