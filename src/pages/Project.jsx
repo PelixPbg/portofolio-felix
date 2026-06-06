@@ -20,14 +20,6 @@ const defaultProjects = [
     img: "/Amogus.png",
     github: "#",
   },
-  {
-  id: 3,
-  title: "Game 2D Sky Raiders",
-  desc: "Game arcade 2D bergaya pixel art yang berfokus pada pengendalian pesawat, menghindari rintangan, dan mencapai skor terbaik dengan pilihan tingkat kesulitan yang beragam.",
-  tech: ["Sprite Design", "Game Logic", "Animation", "UI Design"],
-  img: "/Game.png",
-  github: "#",
-},
 ];
 
 const emptyForm = { title: "", desc: "", tech: "", img: "", github: "" };
