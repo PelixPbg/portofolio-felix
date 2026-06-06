@@ -21,36 +21,29 @@ const initialExperiences = [
 ];
 
 const Experience = () => {
-  // 1. Ambil data dari LocalStorage saat pertama kali load. Jika kosong, pakai initialExperiences
   const [experiences, setExperiences] = useState(() => {
     const savedData = localStorage.getItem("portfolio_experiences");
     return savedData ? JSON.parse(savedData) : initialExperiences;
   });
-  
   const [editData, setEditData] = useState(null);
 
-  // 2. Gunakan useEffect untuk otomatis menyimpan setiap kali state 'experiences' berubah
   useEffect(() => {
     localStorage.setItem("portfolio_experiences", JSON.stringify(experiences));
   }, [experiences]);
 
   const handleSave = (data) => {
     if (editData) {
-      // Logic Update Data
       setExperiences(experiences.map(item => item.id === editData.id ? { ...data, id: editData.id } : item));
       setEditData(null);
     } else {
-      // Logic Create Data
-      const newExp = { ...data, id: Date.now() };
-      setExperiences([newExp, ...experiences]);
+      setExperiences([{ ...data, id: Date.now() }, ...experiences]);
     }
   };
 
   const handleEdit = (data) => setEditData(data);
   const handleCancel = () => setEditData(null);
-
   const handleDelete = (id) => {
-    if (window.confirm("Apakah anda yakin ingin menghapus data pengalaman ini?")) {
+    if (window.confirm("Hapus pengalaman ini?")) {
       setExperiences(experiences.filter(item => item.id !== id));
     }
   };
@@ -58,30 +51,28 @@ const Experience = () => {
   return (
     <section id="experience" className="exp-section">
       <div className="exp-header">
-        <h2 className="exp-section-title">Experience <span className="gradient-text">Management</span></h2>
-        <p className="exp-section-subtitle">Kelola data kegiatan secara dinamis.</p>
+        <h2 className="exp-section-title">My <span className="gradient-text">Experience</span></h2>
+        <p className="exp-section-subtitle">Perjalanan, pencapaian, dan pengalaman saya.</p>
       </div>
 
       <div className="exp-layout">
-        {/* Sisi Kiri: Form Input */}
         <div className="exp-form-side">
           <ExperienceForm onSave={handleSave} editData={editData} onCancel={handleCancel} />
         </div>
-
-        {/* Sisi Kanan: Output List */}
         <div className="exp-list-side">
           {experiences.length === 0 ? (
-            <div className="glass-panel empty-state">
-              <p>Belum ada riwayat pengalaman. Silakan tambahkan melalui form!</p>
+            <div className="empty-state">
+              <p>Belum ada pengalaman. Tambahkan melalui form!</p>
             </div>
           ) : (
-            <div className="exp-grid">
-              {experiences.map((exp) => (
-                <ExperienceCard 
-                  key={exp.id} 
-                  data={exp} 
-                  onEdit={handleEdit} 
-                  onDelete={handleDelete} 
+            <div className="exp-timeline">
+              {experiences.map((exp, index) => (
+                <ExperienceCard
+                  key={exp.id}
+                  data={exp}
+                  index={index}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
                 />
               ))}
             </div>

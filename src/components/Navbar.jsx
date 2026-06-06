@@ -12,15 +12,12 @@ const Navbar = () => {
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    { name: "Skills", path: "/skills" },
     { name: "Experience", path: "/experience" },
     { name: "Projects", path: "/projects" },
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,19 +34,18 @@ const Navbar = () => {
           <span>PORT<span className="accent">FOLIO</span></span>
         </Link>
 
-        {/* Desktop Links */}
         <div className="nav-desktop-menu">
           {menuItems.map((item) => (
-            <NavLink 
-              key={item.name} 
-              to={item.path} 
+            <NavLink
+              key={item.name}
+              to={item.path}
               className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
             >
               {item.name}
               {location.pathname === item.path && (
-                <motion.span 
-                  layoutId="activeIndicator" 
-                  className="active-line" 
+                <motion.span
+                  layoutId="activeIndicator"
+                  className="active-line"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
@@ -57,16 +53,14 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Toggle */}
         <button className="nav-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Drawer */}
       <AnimatePresence mode="wait">
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -74,9 +68,9 @@ const Navbar = () => {
             className="nav-mobile-menu"
           >
             {menuItems.map((item) => (
-              <NavLink 
-                key={item.name} 
-                to={item.path} 
+              <NavLink
+                key={item.name}
+                to={item.path}
                 className={({ isActive }) => `nav-mobile-item ${isActive ? "active" : ""}`}
               >
                 {item.name}

@@ -3,10 +3,7 @@ import { Plus, Save, X } from "lucide-react";
 
 const ExperienceForm = ({ onSave, editData, onCancel }) => {
   const [formData, setFormData] = useState({
-    title: "",
-    type: "Ekstrakurikuler",
-    year: "",
-    desc: ""
+    title: "", type: "Ekstrakurikuler", year: "", desc: ""
   });
 
   useEffect(() => {
@@ -19,69 +16,73 @@ const ExperienceForm = ({ onSave, editData, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.year || !formData.desc) return alert("Mohon isi semua data!");
+    if (!formData.title || !formData.year || !formData.desc) return alert("Mohon isi semua field!");
     onSave(formData);
     setFormData({ title: "", type: "Ekstrakurikuler", year: "", desc: "" });
   };
 
   return (
-    <form className="glass-panel crude-form" onSubmit={handleSubmit}>
-      <h3 className="form-title">{editData ? "Edit Pengalaman" : "Tambah Pengalaman Baru"}</h3>
-      
+    <form className="exp-form glass-panel" onSubmit={handleSubmit}>
+      <div className="exp-form-header">
+        <div className="exp-form-indicator" />
+        <h3 className="exp-form-title">
+          {editData ? "Edit Pengalaman" : "Tambah Pengalaman"}
+        </h3>
+      </div>
+
       <div className="form-group">
         <label>Judul Kegiatan</label>
-        <input 
-          type="text" 
-          placeholder="Contoh: Juara 1 Web Design LKS" 
+        <input
+          type="text"
+          placeholder="Contoh: Juara 1 Web Design LKS"
           value={formData.title}
-          onChange={(e) => setFormData({...formData, title: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         />
       </div>
 
-      <div className="form-grid-inputs">
+      <div className="form-row">
         <div className="form-group">
-          <label>Jenis Kegiatan</label>
-          <select 
-            value={formData.type} 
-            onChange={(e) => setFormData({...formData, type: e.target.value})}
+          <label>Jenis</label>
+          <select
+            value={formData.type}
+            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
           >
             <option value="Ekstrakurikuler">Ekstrakurikuler</option>
             <option value="Lomba">Lomba</option>
             <option value="PKL">PKL</option>
             <option value="Organisasi">Organisasi</option>
             <option value="Sertifikat">Sertifikat</option>
-            <option value="Lainnya">Pengalaman Lainnya</option>
+            <option value="Lainnya">Lainnya</option>
           </select>
         </div>
-
         <div className="form-group">
           <label>Tahun</label>
-          <input 
-            type="text" 
-            placeholder="Contoh: 2025 - 2026" 
+          <input
+            type="text"
+            placeholder="2025"
             value={formData.year}
-            onChange={(e) => setFormData({...formData, year: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, year: e.target.value })}
           />
         </div>
       </div>
 
       <div className="form-group">
-        <label>Deskripsi Singkat</label>
-        <textarea 
-          rows="3" 
-          placeholder="Ceritakan kontribusi atau pencapaianmu..."
+        <label>Deskripsi</label>
+        <textarea
+          rows="4"
+          placeholder="Ceritakan pencapaian atau kontribusimu..."
           value={formData.desc}
-          onChange={(e) => setFormData({...formData, desc: e.target.value})}
-        ></textarea>
+          onChange={(e) => setFormData({ ...formData, desc: e.target.value })}
+        />
       </div>
 
-      <div className="form-buttons">
-        <button type="submit" className="btn-action submit-btn">
+      <div className="form-actions">
+        <button type="submit" className="btn-submit">
           {editData ? <Save size={16} /> : <Plus size={16} />}
-          {editData ? "Simpan Perubahan" : "Tambah Data"}
+          {editData ? "Simpan Perubahan" : "Tambah"}
         </button>
         {editData && (
-          <button type="button" className="btn-action cancel-btn" onClick={onCancel}>
+          <button type="button" className="btn-cancel-form" onClick={onCancel}>
             <X size={16} /> Batal
           </button>
         )}

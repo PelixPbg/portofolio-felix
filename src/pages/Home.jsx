@@ -72,14 +72,16 @@ function Home() {
                 <span className="dot dot-3"></span>
               </div>
               <pre className="code-content">
-                <code>
-{`const developer = {
-  name: "Felix",
-  role: "UI Engineer",
-  skills: ["3D", "CSS3", "JS"],
-  premium: true
-};`}
-                </code>
+                <motion.div
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8 }}
+  className="hero-right"
+>
+  <div className="profile-card">
+    <img src="public/foto.jpeg" alt="Felix" className="profile-photo" />
+  </div>
+</motion.div>
               </pre>
             </div>
           </motion.div>

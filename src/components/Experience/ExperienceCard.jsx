@@ -1,48 +1,62 @@
 import { motion } from "framer-motion";
-import { Edit2, Trash2, Award, Users, Briefcase, ShieldCheck, Milestone, Sparkles } from "lucide-react";
+import { Edit2, Trash2, Award, Users, Briefcase, ShieldCheck, Sparkles, Milestone } from "lucide-react";
 
-// Helper menentukan icon dinamis berdasarkan tipe kegiatan
 const getIcon = (type) => {
-  switch(type) {
-    case "Lomba": return <Award size={22} />;
-    case "Organisasi": return <Users size={22} />;
-    case "PKL": return <Briefcase size={22} />;
-    case "Sertifikat": return <ShieldCheck size={22} />;
-    case "Ekstrakurikuler": return <Sparkles size={22} />;
-    default: return <Milestone size={22} />;
+  switch (type) {
+    case "Lomba": return <Award size={18} />;
+    case "Organisasi": return <Users size={18} />;
+    case "PKL": return <Briefcase size={18} />;
+    case "Sertifikat": return <ShieldCheck size={18} />;
+    case "Ekstrakurikuler": return <Sparkles size={18} />;
+    default: return <Milestone size={18} />;
   }
 };
 
-const ExperienceCard = ({ data, onEdit, onDelete }) => {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -6, boxShadow: "0 10px 30px rgba(6, 182, 212, 0.15)" }}
-      className="glass-panel exp-card"
-    >
-      <div className="card-top">
-        <div className="icon-wrapper-neon">
-          {getIcon(data.type)}
-        </div>
-        <span className="badge-type">{data.type}</span>
-      </div>
+const badgeColor = (type) => {
+  switch (type) {
+    case "Lomba": return "badge-lomba";
+    case "Organisasi": return "badge-organisasi";
+    case "PKL": return "badge-pkl";
+    case "Sertifikat": return "badge-sertifikat";
+    case "Ekstrakurikuler": return "badge-ekskul";
+    default: return "badge-default";
+  }
+};
 
-      <div className="card-body">
-        <span className="card-year">{data.year}</span>
+const ExperienceCard = ({ data, index, onEdit, onDelete }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="timeline-item"
+    >
+      {/* Garis & Dot Timeline */}
+      <div className="timeline-dot">
+        <div className="dot-icon">{getIcon(data.type)}</div>
+      </div>
+      <div className="timeline-line" />
+
+      {/* Card Konten */}
+      <div className="timeline-card glass-panel">
+        <div className="timeline-card-header">
+          <div className="timeline-meta">
+            <span className={`badge-type ${badgeColor(data.type)}`}>{data.type}</span>
+            <span className="card-year">{data.year}</span>
+          </div>
+          <div className="card-crud-btns">
+            <button onClick={() => onEdit(data)} className="crud-btn edit" title="Edit">
+              <Edit2 size={14} />
+            </button>
+            <button onClick={() => onDelete(data.id)} className="crud-btn delete" title="Hapus">
+              <Trash2 size={14} />
+            </button>
+          </div>
+        </div>
+
         <h4 className="card-title">{data.title}</h4>
         <p className="card-desc">{data.desc}</p>
-      </div>
-
-      <div className="card-footer-crud">
-        <button onClick={() => onEdit(data)} className="crud-btn edit" aria-label="Edit">
-          <Edit2 size={15} /> Edit
-        </button>
-        <button onClick={() => onDelete(data.id)} className="crud-btn delete" aria-label="Delete">
-          <Trash2 size={15} /> Hapus
-        </button>
       </div>
     </motion.div>
   );
