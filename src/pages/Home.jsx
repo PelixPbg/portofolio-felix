@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { ScrollIndicator, BackToTop } from "../components/ScrollFeatures";
 import "./Home.css";
+import Felix from "/foto.jpeg";
 
 const skills = [
   { name: "HTML5 Semantic", level: 95, icon: <Globe /> },
