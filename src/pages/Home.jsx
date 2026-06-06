@@ -80,7 +80,7 @@ function Home() {
   className="hero-right"
 >
   <div className="profile-card">
-    <img src="public/foto.jpeg" alt="Felix" className="profile-photo" />
+    <img src="/foto.jpeg" alt="Felix" className="profile-photo" />
   </div>
 </motion.div>
               </pre>
